@@ -1,0 +1,80 @@
+<!--
+Questo codice HTML rappresenta la pagina per visualizzare la lista dei contatti nella rubrica. 
+Utilizza Thymeleaf per popolare dinamicamente i dati dei contatti all'interno della tabella e per gestire l'eliminazione di un contatto. 
+La pagina include una tabella che mostra il nome, il cognome, il telefono e l'email di ogni contatto, 
+insieme a un pulsante per eliminare ciascun contatto. 
+Se la lista dei contatti è vuota, viene visualizzato un messaggio appropriato. 
+La struttura generale del documento è resa responsive grazie all'uso delle classi Bootstrap.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Imposta l'encoding del documento -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Imposta la larghezza della viewport e lo scaling iniziale -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"> <!-- Collega il foglio di stile Bootstrap -->
+    <title>Lista contatti</title> <!-- Titolo della pagina -->
+</head>
+<body>
+    <div>
+        <!-- Feedback di eliminazione -->
+        <div class="col-3 my-2">
+            <div class="alert alert-info" role="alert" th:if="${deleted != null}"> 
+                Film eliminato!
+            </div>
+        </div>
+
+        <header class="my-2">
+            <h2>Lista Film</h2> <!-- Intestazione della lista film -->
+            <!-- Pulsante per aggiungere un nuovo film -->
+            <a th:href="@{/films/nuovo}" class="btn btn-success">Nuovo film</a>
+        </header>
+
+
+        <!-- Pulsante per aggiungere un nuovo film -->
+        <header class="my-2">
+        <form method="post" action="/catalogo/svuota">
+            <button type="submit" class="btn btn-success">Svuota Catalogo</button>
+        </form>
+      </header>
+
+        <!-- Tabella per visualizzare i film -->
+        <table class="table table-striped table-bordered"> 
+            <thead class="thead-dark"> <!-- Intestazione scura della tabella -->
+                <tr>
+                    <!-- Definizione delle colonne della tabella -->
+                    <th class="col-2">Codice</th>
+                    <th class="col-2">Titolo</th>
+                    <th class="col-2">Genere</th>
+                    <th class="col-3">Anno</th>
+                    <th class="col-4">Voto</th>
+                    <th class="col-1"></th> <!-- Colonna vuota per il pulsante di eliminazione -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Ciclo attraverso ogni contatto nella lista di film -->
+                <tr th:each="f: ${films}"> 
+                    <!-- Visualizza i dettagli di ogni contatto -->
+                    <td th:text="${f.codice}"></td> <!-- Colonna nome -->
+                    <td th:text="${f.titolo}"></td> <!-- Colonna cognome -->
+                    <td th:text="${f.genere}"></td> <!-- Colonna telefono -->
+                    <td th:text="${f.anno}"></td>  <!-- Colonna email -->
+                    <td th:text="${f.voto}"></td>  <!-- Colonna email -->
+
+                    <td>
+                        <!-- Pulsante per eliminare il film -->
+                        <a th:href="@{'/films/delete/'+${f.codice}}" class="btn btn-danger">Elimina</a>
+                    </td>
+
+                    
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Messaggio visualizzato se la lista dei film è vuota -->
+        <small th:if="${#lists.isEmpty(contacts)}"> 
+            Nessun film inserito
+        </small>
+    </div>
+</body>
+</html>

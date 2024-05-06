@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Collegamento al foglio di stile Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <title>Dettagli utente</title>
+</head>
+<body>
+
+    <!-- Inizia il corpo della pagina -->
+    <div class="col-3">
+
+        <div>
+
+            <div>
+                <!-- Campo per visualizzare lo username dell'utente -->
+                <b>Codice: </b><span th:text="${user.codice}"></span>
+            </div>
+
+            <div>
+                <!-- Campo per visualizzare l'email dell'utente -->
+                <b>Titolo: </b><span th:text="${user.titolo}"></span>
+            </div>
+
+            <div>
+                <!-- Campo per visualizzare l'email dell'utente -->
+                <b>Genere: </b><span th:text="${user.genere}"></span>
+            </div>
+
+            <div>
+                <!-- Campo per visualizzare l'email dell'utente -->
+                <b>Anno: </b><span th:text="${user.anno}"></span>
+            </div>
+
+            <div>
+                <!-- Campo per visualizzare l'email dell'utente -->
+                <b>Voto: </b><span th:text="${user.voto}"></span>
+            </div>
+        </div>
+
+        <br>
+        <div>
+            <!-- Link per effettuare il logout -->
+            <a class="btn btn-primary" th:href="@{/films}">Home</a>
+        </div>
+    </div>
+    <!-- Fine corpo della pagina -->
+</body>
+</html>

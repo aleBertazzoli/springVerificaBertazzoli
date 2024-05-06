@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <title>Nuovo film</title>
+</head>
+<body>
+    <div>
+        <!-- Titolo della pagina -->
+        <h1>Aggiunta Film</h1>
+
+        <div class="col-3">
+            <!-- Form per il login -->
+            <form method="post" th:action="@{/film/codice}" th:object="${userForm}">
+            
+               <!-- Campo per l'inserimento dell'codice -->
+               <div>
+                    <label>Codice</label>
+                    <br>
+                    <input type="text" th:field="*{codice}">
+               </div>
+    
+               <!-- Campo per l'inserimento della titolo -->
+               <div>
+                    <label>Titolo</label>
+                    <br>
+                    <input type="text" th:field="*{titolo}">
+               </div>
+
+               <!-- Campo per l'inserimento della genere -->
+               <div>
+                    <label>Genere</label>
+                    <br>
+                    <input type="text" th:field="*{genere}">
+                </div>
+
+               <!-- Campo per l'inserimento del anno -->
+               <div>
+                    <label>Anno</label>
+                    <br>
+                    <input type="text" th:field="*{anno}">
+                </div>
+
+
+       <div>
+        <label>Voto</label>
+        <br>
+        <input type="text" th:field="*{voto}">
+   </div>
+
+               <br>
+                <!-- Pulsante per inviare il form -->
+                <div>
+                    <input class="btn btn-primary" type="submit" value="Aggiungi"/>
+                    <!-- Link per tornare alla homepage -->
+                    <a class="btn btn-secondary" th:href="@{/films}">Home</a>
+                </div>
+    
+            </form>
+        </div>
+    </div>
+</body>
+</html>
